@@ -65,14 +65,22 @@ Entidades → Clases del modelo de datos
 Estructura del proyecto
 
 src
+
 ├── Entidades
+
 │ Vehiculo.java
 │ Registro.java
+
 ├── Logica
+
 │ ParqueoService.java
+
 ├── Datos
+
 │ RegistroDAO.java
+
 └── Main
+
 Main.java
 
 VentanaPrincipal.java
@@ -88,5 +96,7 @@ README.md - Mejoras en interfaz grafica y validaciones.
 Versiones 
 
 v1.0 → Registro de ingreso funcionando
+
 v1.1 → Registro de salida y cálculo del monto a pagar
+
 v1.2 → Mejoras en interfaz gráfica y validaciones
