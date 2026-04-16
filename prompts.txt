@@ -1,1 +1,46 @@
+Prompt 1:
+Generar una estructura de proyecto en Java utilizando arquitectura por capas para un sistema de parqueo público con entidades, lógica de negocio, acceso a datos y presentación en Swing.
 
+Parte generada:
+Estructura inicial de paquetes y clases.
+
+Modificaciones manuales:
+Se ajustaron nombres de paquetes y métodos para cumplir con los requerimientos del examen.
+
+
+Prompt 2:
+Crear una clase de lógica de negocio en Java que registre entrada y salida de vehículos en un parqueo y calcule el monto a pagar por horas.
+
+Parte generada:
+Clase ParqueoService con métodos de ingreso, salida y cálculo de cobro.
+
+Modificaciones manuales:
+Se agregaron validaciones para evitar ingreso duplicado.
+
+
+Prompt 3:
+Crear una interfaz gráfica en Java Swing con JTable para mostrar vehículos activos y un historial.
+
+Parte generada:
+Clase VentanaPrincipal con tablas y botones.
+
+Modificaciones manuales:
+Se integró con la capa de lógica de negocio y modelo de tabla.
+
+Prompt:
+Mejorar sistema de parqueo en Java para que el formato de fecha/hora sea más legible y el cálculo de cobro redondee las horas hacia arriba.
+
+Parte generada:
+Se implementó DateTimeFormatter y Duration para cálculo de horas.
+
+Modificaciones manuales:
+Se ajustó integración con DAO y entidades para persistencia.
+
+Prompt:
+Corregir errores de compilación en sistema de parqueo Java debido a inconsistencias entre entidades, DAO y lógica de negocio.
+
+Parte generada:
+Se redefinió estructura de entidades y métodos del DAO.
+
+Modificaciones manuales:
+Se ajustó a arquitectura del proyecto existente y compatibilidad con interfaz Swing.
