@@ -8,107 +8,71 @@ import Datos.RegistroDAO;
 import Entidades.Registro;
 import Entidades.Vehiculo;
 
-import java.time.Duration;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+import java.time.format.DateTimeFormatter;
+import java.time.Duration;
 
-/**
- *
- * @author katherinepereira
- */
 public class ParqueoService {
-    
+
     private RegistroDAO dao = new RegistroDAO();
 
-    private List<Registro> registros = new ArrayList<>();
+    private DateTimeFormatter formatter =
+            DateTimeFormatter.ofPattern("dd/MM/yyyy hh:mm a");
 
-    private double TARIFA = 500;
+    public Registro ingresar(String placa, String tipo) {
 
-    public ParqueoService() {
-        registros = dao.leerRegistros();
-    }
-
-    public boolean registrarIngreso(String placa, String tipo) {
-
-        if (placa == null || placa.isEmpty()) {
-            return false;
+        if (placa == null || placa.trim().isEmpty()) {
+            return null;
         }
 
-        if (tipo == null || tipo.isEmpty()) {
-            return false;
-        }
-
-        for (Registro r : registros) {
-
-            if (r.getVehiculo().getPlaca().equals(placa) && r.getHoraSalida() == null) {
-                return false;
-            }
-
+        if (dao.existeActivo(placa)) {
+            return null;
         }
 
         Vehiculo v = new Vehiculo(placa, tipo);
+        LocalDateTime entrada = LocalDateTime.now();
 
-        Registro r = new Registro(v, LocalDateTime.now());
+        Registro r = new Registro(v, entrada);
+        r.setEntrada(entrada.format(formatter));
 
-        registros.add(r);
+        dao.guardarActivo(r);
 
-        dao.guardarRegistro(r);
-
-        return true;
-
+        return r;
     }
 
-    public boolean registrarSalida(String placa) {
+    public Registro salida(String placa) {
 
-        for (Registro r : registros) {
+        Registro r = dao.buscarActivo(placa);
 
-            if (r.getVehiculo().getPlaca().equals(placa) && r.getHoraSalida() == null) {
-
-                LocalDateTime salida = LocalDateTime.now();
-
-                r.setHoraSalida(salida);
-
-                long minutos = Duration.between(r.getHoraEntrada(), salida).toMinutes();
-
-                double horas = Math.ceil(minutos / 60.0);
-
-                double monto = horas * TARIFA;
-
-                r.setMonto(monto);
-
-                dao.guardarRegistro(r);
-
-                return true;
-
-            }
-
+        if (r == null) {
+            return null;
         }
 
-        return false;
+        LocalDateTime salida = LocalDateTime.now();
+        r.setSalida(salida.format(formatter));
+        r.setSalidaReal(salida);
 
-    }
+        long minutos = Duration.between(r.getEntradaReal(), salida).toMinutes();
+        long horas = minutos / 60;
 
-    public List<Registro> obtenerActivos() {
-
-        List<Registro> activos = new ArrayList<>();
-
-        for (Registro r : registros) {
-
-            if (r.getHoraSalida() == null) {
-                activos.add(r);
-            }
-
+        if (minutos % 60 != 0) {
+            horas++;
         }
 
-        return activos;
+        if (horas < 1) {
+            horas = 1;
+        }
 
+        double monto = horas * 500;
+        r.setMonto(monto);
+
+        dao.moverAHistorial(r);
+        dao.eliminarActivo(placa);
+
+        return r;
     }
 
-    public List<Registro> obtenerHistorial() {
-        return registros;
+    public RegistroDAO getDao() {
+        return dao;
     }
-
 }
-    
-

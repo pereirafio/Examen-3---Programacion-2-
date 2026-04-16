@@ -5,80 +5,49 @@
 package Datos;
 
 import Entidades.Registro;
-import Entidades.Vehiculo;
-
-import java.io.*;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- *
- * @author katherinepereira
- */
 public class RegistroDAO {
 
-    private String archivo = "registros.txt";
+    private List<Registro> activos = new ArrayList<>();
+    private List<Registro> historial = new ArrayList<>();
 
-    public void guardarRegistro(Registro r) {
-
-        try {
-
-            FileWriter fw = new FileWriter(archivo, true);
-            BufferedWriter bw = new BufferedWriter(fw);
-
-            bw.write(
-                    r.getVehiculo().getPlaca() + ";" +
-                    r.getVehiculo().getTipo() + ";" +
-                    r.getHoraEntrada() + ";" +
-                    r.getHoraSalida() + ";" +
-                    r.getMonto()
-            );
-
-            bw.newLine();
-            bw.close();
-
-        } catch (Exception e) {
-
-        }
-
-    }
-
-    public List<Registro> leerRegistros() {
-
-        List<Registro> lista = new ArrayList<>();
-
-        try {
-
-            BufferedReader br = new BufferedReader(new FileReader(archivo));
-            String linea;
-
-            while ((linea = br.readLine()) != null) {
-
-                String[] datos = linea.split(";");
-
-                Vehiculo v = new Vehiculo(datos[0], datos[1]);
-
-                Registro r = new Registro(v, LocalDateTime.parse(datos[2]));
-
-                if (!datos[3].equals("null")) {
-                    r.setHoraSalida(LocalDateTime.parse(datos[3]));
-                }
-
-                r.setMonto(Double.parseDouble(datos[4]));
-
-                lista.add(r);
+    public boolean existeActivo(String placa) {
+        for (Registro r : activos) {
+            if (r.getPlaca().equalsIgnoreCase(placa)) {
+                return true;
             }
-
-            br.close();
-
-        } catch (Exception e) {
-
         }
-
-        return lista;
+        return false;
     }
 
-}
-    
+    public void guardarActivo(Registro r) {
+        activos.add(r);
+    }
 
+    public Registro buscarActivo(String placa) {
+        for (Registro r : activos) {
+            if (r.getPlaca().equalsIgnoreCase(placa)) {
+                return r;
+            }
+        }
+        return null;
+    }
+
+    public void eliminarActivo(String placa) {
+        activos.removeIf(r -> r.getPlaca().equalsIgnoreCase(placa));
+    }
+
+    public void moverAHistorial(Registro r) {
+        historial.add(r);
+    }
+
+    public List<Registro> getActivos() {
+        return activos;
+    }
+
+    public List<Registro> getHistorial() {
+        return historial;
+    }
+}
