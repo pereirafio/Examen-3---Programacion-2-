@@ -100,3 +100,7 @@ v1.0 → Registro de ingreso funcionando
 v1.1 → Registro de salida y cálculo del monto a pagar
 
 v1.2 → Mejoras en interfaz gráfica y validaciones
+
+Se actualizo completamente la hora de entrada y salida. 
+
+Todos los documentos estan actualizados y correctos. 
