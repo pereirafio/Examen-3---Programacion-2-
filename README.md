@@ -31,12 +31,12 @@ Entidades → Clases del modelo de datos
 
 Estructura del proyecto
 
-# Sistema de Parqueo Público
+Sistema de Parqueo Público
 
 Aplicación desarrollada en Java para la gestión básica de un parqueo público.  
 El sistema permite registrar la entrada y salida de vehículos, calcular el monto a pagar según el tiempo de permanencia y visualizar los vehículos activos y el historial.
 
-## Tecnologías utilizadas
+Tecnologías utilizadas
 
 - Java
 - Swing (JFrame, JTable, formularios)
@@ -44,7 +44,7 @@ El sistema permite registrar la entrada y salida de vehículos, calcular el mont
 - Persistencia en archivos .txt
 - Arquitectura por capas
 
-## Funcionalidades
+Funcionalidades
 
 - Registro de ingreso de vehículos
 - Registro de salida de vehículos
@@ -53,7 +53,7 @@ El sistema permite registrar la entrada y salida de vehículos, calcular el mont
 - Visualización de historial de registros
 - Validación para evitar ingreso duplicado de placas
 
-## Arquitectura del sistema
+Arquitectura del sistema
 
 El sistema está implementado utilizando arquitectura por capas:
 
@@ -79,8 +79,14 @@ VentanaPrincipal.java
 
 ModeloTablaRegistro.java
 
-prompts.txt 
+prompts.txt - Descripcion uso de IA.
 
-CHANGELOG.md 
+CHANGELOG.md - Registro de versiones del proyecto.
 
-README.md 
+README.md - Mejoras en interfaz grafica y validaciones.
+
+Versiones 
+
+v1.0 → Registro de ingreso funcionando
+v1.1 → Registro de salida y cálculo del monto a pagar
+v1.2 → Mejoras en interfaz gráfica y validaciones
