@@ -11,6 +11,7 @@ import Entidades.Vehiculo;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.Duration;
+import java.util.List;
 
 public class ParqueoService {
 
@@ -74,5 +75,17 @@ public class ParqueoService {
 
     public RegistroDAO getDao() {
         return dao;
+    }
+
+    public List<Registro> obtenerHistorial() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void registrarSalida(String placa) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public void registrarIngreso(String placa, String tipo) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

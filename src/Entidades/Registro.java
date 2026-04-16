@@ -81,4 +81,12 @@ public class Registro {
     public void setMonto(double monto) {
         this.monto = monto;
     }
+
+    public Object getHoraSalida() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
+    public Object getHoraEntrada() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }
